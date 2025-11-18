@@ -1,0 +1,5 @@
+export const PAGE_SIZE = 10;
+
+export const PAGE_SIZE_OPTIONS = [10, 20, 30, 40, 50] as const;
+
+export const MINIMUM_PAYOUT_AMOUNT = 1_000;
