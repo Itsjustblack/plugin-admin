@@ -78,12 +78,15 @@ export function VendorsTable() {
 	];
 
 	return (
-		<DataTable
-			data={vendors}
-			columns={columns}
-			isPending={isPending}
-			withPagination={false}
-			getRowId={(row) => row.id.toString()}
-		/>
+		<>
+			<h2 className="text-xl font-semibold tracking-tight mb-2">Vendors</h2>
+			<DataTable
+				data={vendors}
+				columns={columns}
+				isPending={isPending}
+				withPagination={false}
+				getRowId={(row) => row.id.toString()}
+			/>
+		</>
 	);
 }

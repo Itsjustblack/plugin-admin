@@ -18,7 +18,7 @@ export default function Page() {
 				</div>
 
 				<Link
-					href="/"
+					href="/category"
 					className="ml-auto h-fit"
 				>
 					<Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">

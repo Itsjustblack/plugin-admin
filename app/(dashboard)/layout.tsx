@@ -1,10 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbList,
-	BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 	SidebarInset,
 	SidebarProvider,
@@ -29,11 +24,11 @@ export default function DashboardLayout({
 							className="mr-2 data-[orientation=vertical]:h-4"
 						/>
 						<Breadcrumb>
-							<BreadcrumbList>
+							{/* <BreadcrumbList>
 								<BreadcrumbItem>
 									<BreadcrumbPage>Categories</BreadcrumbPage>
 								</BreadcrumbItem>
-							</BreadcrumbList>
+							</BreadcrumbList> */}
 						</Breadcrumb>
 					</div>
 				</header>
