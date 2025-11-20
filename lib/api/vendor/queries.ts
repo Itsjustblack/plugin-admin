@@ -4,7 +4,7 @@ import apiClient from "../client";
 
 export async function getAllVendors(queryParams?: QueryParams) {
 	try {
-		const res = await apiClient.get<Vendor[]>("/admin/vendors/", {
+		const res = await apiClient.get<Vendor[]>("/admin/vendors", {
 			params: queryParams,
 		});
 		return res.data;

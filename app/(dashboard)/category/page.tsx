@@ -1,5 +1,5 @@
-import AdminStats from "@/components/admin-stats";
-import { VendorsTable } from "@/components/tables/vendor-table";
+import CategoryStats from "@/components/category-stats";
+import { CategoriesTable } from "@/components/tables/category-table";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import Link from "next/link";
@@ -21,9 +21,8 @@ export default function Page() {
 					</Button>
 				</Link>
 			</div>
-
-			<AdminStats />
-			<VendorsTable />
+			<CategoryStats />
+			<CategoriesTable />
 		</div>
 	);
 }

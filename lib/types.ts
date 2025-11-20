@@ -27,6 +27,13 @@ export interface Vendor {
 	updated_at: string;
 }
 
+export interface LinkedVendor {
+	id: number;
+	vendor_id: number;
+	category_id: number;
+	min_price: number;
+}
+
 export interface User {
 	id: number;
 	full_name: string;

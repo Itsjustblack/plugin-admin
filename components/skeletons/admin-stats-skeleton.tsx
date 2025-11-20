@@ -1,20 +1,6 @@
-"use client";
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 
-import { getAdminMetrics } from "@/lib/api/admin/queries";
-import { useQuery } from "@tanstack/react-query";
-import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import AdminStatsSkeleton from "./skeletons/admin-stats-skeleton";
-
-export default function AdminStats() {
-	const { data, isPending } = useQuery({
-		queryKey: ["admin", "metrics"],
-		queryFn: getAdminMetrics,
-	});
-
-	if (isPending) {
-		return <AdminStatsSkeleton />;
-	}
-
+export default function AdminStatsSkeleton() {
 	return (
 		<div className="grid gap-4 md:grid-cols-3">
 			<Card className="bg-card">
@@ -24,8 +10,9 @@ export default function AdminStats() {
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<div className="text-2xl font-bold text-foreground">
-						{data?.clients}
+					<div className="space-y-2">
+						<div className="h-8 bg-gray-200 rounded animate-pulse"></div>
+						<div className="h-3 bg-gray-100 rounded w-20 animate-pulse"></div>
 					</div>
 					<p className="mt-1 text-xs text-muted-foreground">
 						All clients in system
@@ -39,8 +26,9 @@ export default function AdminStats() {
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<div className="text-2xl font-bold text-foreground">
-						{data?.vendors}
+					<div className="space-y-2">
+						<div className="h-8 bg-gray-200 rounded animate-pulse"></div>
+						<div className="h-3 bg-gray-100 rounded w-20 animate-pulse"></div>
 					</div>
 					<p className="mt-1 text-xs text-muted-foreground">
 						All Vendors in system
@@ -54,8 +42,9 @@ export default function AdminStats() {
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<div className="text-2xl font-bold text-foreground">
-						{data?.active_projects}
+					<div className="space-y-2">
+						<div className="h-8 bg-gray-200 rounded animate-pulse"></div>
+						<div className="h-3 bg-gray-100 rounded w-20 animate-pulse"></div>
 					</div>
 					<p className="mt-1 text-xs text-muted-foreground">
 						Active projects in system

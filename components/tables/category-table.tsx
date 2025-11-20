@@ -1,18 +1,28 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { deleteCategory, activateCategory, deactivateCategory } from "@/lib/api/category/actions";
+import {
+	deleteCategory,
+	activateCategory,
+	deactivateCategory,
+} from "@/lib/api/category/actions";
 import { getAllCategories } from "@/lib/api/category/queries";
 import { PAGE_SIZE } from "@/lib/constants";
 import { Category } from "@/lib/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ColumnDef } from "@tanstack/react-table";
-import { Trash2, Power } from "lucide-react";
+import { Trash2, Power, Eye, MoreVertical } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { DataTable } from "../data-table";
 import { Badge } from "../ui/badge";
 import { formatCurrency } from "@/lib/utils";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import Link from "next/link";
 
 interface CategoryActionsMenuProps {
 	categoryId: string;
@@ -33,31 +43,70 @@ function CategoryActionsMenu({
 	onDeactivate,
 	onDelete,
 }: CategoryActionsMenuProps) {
+	const [open, setOpen] = useState(false);
+
 	return (
-		<div className="flex items-center gap-2">
-			<Button
-				size="sm"
-				variant={isActive ? "outline" : "default"}
-				type="button"
-				disabled={isToggling || isDeleting}
-				onClick={() => isActive ? onDeactivate(categoryId) : onActivate(categoryId)}
-				className={`h-8 w-8 p-0 ${isActive ? "text-destructive hover:text-destructive hover:bg-destructive/10" : ""}`}
-				title={isActive ? "Deactivate category" : "Activate category"}
+		<Popover
+			open={open}
+			onOpenChange={setOpen}
+		>
+			<PopoverTrigger asChild>
+				<Button
+					variant="ghost"
+					size="sm"
+					className="h-8 w-8 p-0"
+					disabled={isDeleting || isToggling}
+				>
+					<MoreVertical className="h-4 w-4" />
+					<span className="sr-only">Open menu</span>
+				</Button>
+			</PopoverTrigger>
+			<PopoverContent
+				className="w-44 p-1"
+				align="end"
 			>
-				<Power className="h-4 w-4" />
-			</Button>
-			<Button
-				size="sm"
-				variant="outline"
-				type="button"
-				disabled={isDeleting || isToggling}
-				onClick={() => onDelete(categoryId)}
-				className="h-8 w-8 p-0 text-destructive hover:text-destructive"
-				title="Delete category"
-			>
-				<Trash2 className="h-4 w-4" />
-			</Button>
-		</div>
+				<div className="flex flex-col gap-1">
+					<Link href={`/category/${categoryId}`}>
+						<button
+							className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+							onClick={() => setOpen(false)}
+						>
+							<Eye className="h-4 w-4" />
+							<span>View Details</span>
+						</button>
+					</Link>
+
+					<button
+						className={`flex items-center gap-3 w-full px-3 py-2 text-sm rounded-sm transition-colors ${
+							isActive
+								? "text-orange-600 hover:bg-orange-50 dark:text-orange-400 dark:hover:bg-orange-950"
+								: "text-green-600 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-950"
+						}`}
+						disabled={isToggling || isDeleting}
+						onClick={() => {
+							if (isActive) onDeactivate(categoryId);
+							else onActivate(categoryId);
+							setOpen(false);
+						}}
+					>
+						<Power className="h-4 w-4" />
+						<span>{isActive ? "Deactivate" : "Activate"}</span>
+					</button>
+
+					<button
+						className="flex items-center gap-3 w-full px-3 py-2 text-sm rounded-sm text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950 transition-colors"
+						disabled={isDeleting || isToggling}
+						onClick={() => {
+							onDelete(categoryId);
+							setOpen(false);
+						}}
+					>
+						<Trash2 className="h-4 w-4" />
+						<span>Delete</span>
+					</button>
+				</div>
+			</PopoverContent>
+		</Popover>
 	);
 }
 

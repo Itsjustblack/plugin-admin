@@ -34,7 +34,7 @@ import {
 	IconChevronsRight,
 } from "@tabler/icons-react";
 import { Dispatch, SetStateAction } from "react";
-import RowsSkeleton from "./row-skeleton";
+import RowsSkeleton from "./skeletons/row-skeleton";
 
 /** Pagination Controls */
 function PaginationControls<TData>({ table }: { table: TanStackTable<TData> }) {

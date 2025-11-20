@@ -12,7 +12,7 @@ interface AdminMetrics {
 
 export async function getAdminMetrics() {
 	try {
-		const res = await apiClient.get<AdminMetrics>("/admin/dashboard/metrics/");
+		const res = await apiClient.get<AdminMetrics>("/admin/dashboard/metrics");
 		return res.data;
 	} catch (error) {
 		throw error as AxiosError;

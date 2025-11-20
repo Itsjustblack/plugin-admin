@@ -1,28 +1,23 @@
-import CategoryStats from "@/components/category-stats";
-import { CategoriesTable } from "@/components/tables/category-table";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import Link from "next/link";
+"use client";
+
+import AdminStats from "@/components/admin-stats";
+import { VendorsTable } from "@/components/tables/vendor-table";
 
 export default function Page() {
 	return (
 		<div className="mx-auto max-w-7xl space-y-8">
-			<div className="flex items-center justify-between">
-				<div>
-					<h1 className="text-3xl font-bold text-foreground">Categories</h1>
-					<p className="mt-2 text-muted-foreground">
-						Manage and organize your product categories
-					</p>
-				</div>
-				<Link href="/category/new">
-					<Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-						<Plus className="h-4 w-4" />
-						Add Category
-					</Button>
-				</Link>
+			<div>
+				<h1 className="text-3xl font-bold text-foreground">
+					Welcome back, Olamide
+				</h1>
+				<p className="mt-2 text-muted-foreground">
+					Here&apos;s an overview of your platform. Manage categories, monitor
+					vendors, and track your business performance.
+				</p>
 			</div>
-			<CategoryStats />
-			<CategoriesTable />
+
+			<AdminStats />
+			<VendorsTable />
 		</div>
 	);
 }

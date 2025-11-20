@@ -1,19 +1,17 @@
 "use client";
 
 import { getAllVendors } from "@/lib/api/vendor/queries";
-import { PAGE_SIZE } from "@/lib/constants";
 import { Vendor } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { ColumnDef } from "@tanstack/react-table";
-import { useState } from "react";
 import { DataTable } from "../data-table";
 import { Badge } from "../ui/badge";
 
 export function VendorsTable() {
-	const [pageParams, setPageParams] = useState({
-		pageIndex: 0,
-	pageSize: PAGE_SIZE,
-	});
+	// const [pageParams, setPageParams] = useState({
+	// 	pageIndex: 0,
+	// 	pageSize: PAGE_SIZE,
+	// });
 
 	const { data, isPending } = useQuery({
 		queryKey: ["vendors"],
@@ -84,10 +82,7 @@ export function VendorsTable() {
 			data={vendors}
 			columns={columns}
 			isPending={isPending}
-			withPagination={true}
-			manualPagination={false}
-			pagination={pageParams}
-			setPagination={setPageParams}
+			withPagination={false}
 			getRowId={(row) => row.id.toString()}
 		/>
 	);
